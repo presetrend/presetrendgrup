@@ -1,5 +1,5 @@
 {
-      "name": "Emiko Robot",
+      "name": "Presetrend Robot",
       "description": "A Powerful  Telegram group management bot with anime theme.",
       "keywords": [
          "telegram",
@@ -9,8 +9,8 @@
          "naorobot"
       ],
     
-   "logo":    "https://telegra.ph/file/35e56ba7eace7332356ad.jpg",  
-   "repository": "https://github.com/kennedy-ex/https://github.com/kennedy-ex/EmikoRobot",
+   "logo":    "https://telegra.ph/file/752e597281857206e1a9e.jpg",  
+   "repository": "https://github.com/presetrend/presetrendgrup",
    "addons": [
           {
          "options": {
