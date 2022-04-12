@@ -514,7 +514,7 @@ def set_title(update: Update, context: CallbackContext):
 
     if user_member.status == "creator":
         message.reply_text(
-            "Orang ini MEMBUAT obrolan, bagaimana saya bisa mengatur judul khusus untuknya?,
+           "This person CREATED the chat, how can i set custom title for him?",
         )
         return
 
