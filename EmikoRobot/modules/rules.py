@@ -33,8 +33,8 @@ def send_rules(update, chat_id, from_pm=False):
         if excp.message == "Chat not found" and from_pm:
             bot.send_message(
                 user.id,
-                "The rules shortcut for this chat hasn't been set properly! Ask admins to "
-                "fix this.\nMaybe they forgot the hyphen in ID",
+                "Pintasan aturan untuk obrolan ini belum ditetapkan dengan benar! Minta admin untuk "
+                "fix this.nMaybe mereka lupa tanda hubung di ID",
             )
             return
         raise
@@ -52,17 +52,17 @@ def send_rules(update, chat_id, from_pm=False):
     elif from_pm:
         bot.send_message(
             user.id,
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!",
+            "Admin grup belum menetapkan aturan apa pun untuk obrolan ini."
+            "Ini mungkin tidak berarti itu melanggar hukum ...!",
         )
     elif rules and reply_msg:
         reply_msg.reply_text(
-            "Please click the button below to see the rules.",
+            "Silakan klik tombol di bawah ini untuk melihat aturannya.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Rules",
+                            text="aturan",
                             url=f"t.me/{bot.username}?start={chat_id}",
                         ),
                     ],
@@ -71,12 +71,12 @@ def send_rules(update, chat_id, from_pm=False):
         )
     elif rules:
         update.effective_message.reply_text(
-            "Please click the button below to see the rules.",
+            "Silakan klik tombol di bawah ini untuk melihat aturannya.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Rules",
+                            text="aturan",
                             url=f"t.me/{bot.username}?start={chat_id}",
                         ),
                     ],
@@ -85,8 +85,8 @@ def send_rules(update, chat_id, from_pm=False):
         )
     else:
         update.effective_message.reply_text(
-            "The group admins haven't set any rules for this chat yet. "
-            "This probably doesn't mean it's lawless though...!",
+            "Admin grup belum menetapkan aturan apa pun untuk obrolan ini."
+            "Ini mungkin tidak berarti itu melanggar hukum ...!",
         )
 
 
@@ -131,7 +131,7 @@ def __migrate__(old_chat_id, new_chat_id):
 
 
 def __chat_settings__(chat_id, user_id):
-    return f"This chat has had it's rules set: `{bool(sql.get_rules(chat_id))}`"
+    return f"Obrolan ini telah diatur aturannya: `{bool(sql.get_rules(chat_id))}`"
 
 
 __mod_name__ = "Rules"
