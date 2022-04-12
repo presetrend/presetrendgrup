@@ -102,7 +102,7 @@ def check_flood(update, context) -> str:
 
     except BadRequest:
         msg.reply_text(
-            "I can't restrict people here, give me permissions first! Until then, I'll disable anti-flood.",
+            "Saya tidak bisa membatasi orang di sini, beri saya izin dulu! Sampai saat itu, saya akan menonaktifkan anti-banjir.",
         )
         sql.set_flood(chat.id, 0)
         return (
@@ -325,8 +325,8 @@ def set_flood_mode(update, context):
             if len(args) == 1:
                 teks = (
                     update.effective_message,
-                    """It looks like you tried to set time value for antiflood but you didn't specified time; Try, `/setfloodmode tmute <timevalue>`.
-    Examples of time value: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks.""",
+                    """Sepertinya Anda mencoba mengatur nilai waktu untuk antiflood tetapi Anda tidak menentukan waktu; Coba, `/setfloodmode tmute <timevalue>`.
+     Contoh nilai waktu: 4m = 4 menit, 3j = 3 jam, 6h = 6 hari, 5w = 5 minggu.""",
                 )
                 send_message(update.effective_message, teks, parse_mode="markdown")
                 return
@@ -354,7 +354,7 @@ def set_flood_mode(update, context):
         return (
             "<b>{}:</b>\n"
             "<b>Admin:</b> {}\n"
-            "Has changed antiflood mode. User will {}.".format(
+            "Telah mengubah mode antibanjir. Pengguna akan {}.".format(
                 settypeflood,
                 html.escape(chat.title),
                 mention_html(user.id, html.escape(user.first_name)),
@@ -373,7 +373,7 @@ def set_flood_mode(update, context):
         settypeflood = "tmute for {}".format(getvalue)
     if conn:
         text = msg.reply_text(
-            "Sending more messages than flood limit will result in {} in {}.".format(
+            "Mengirim lebih banyak pesan daripada batas banjir akan menghasilkan {} di {}.".format(
                 settypeflood,
                 chat_name,
             ),
