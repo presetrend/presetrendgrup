@@ -49,25 +49,25 @@ en_chats = []
 async def hmm(_, message):
     global ewe_chats
     if len(message.command) != 2:
-        await message.reply_text("I only recognize /chatbot on and /chatbot off only")
+        await message.reply_text("Saya hanya mengenali /chatbot on dan /chatbot mati")
         message.continue_propagation()
     status = message.text.split(None, 1)[1]
     chat_id = message.chat.id
     if status == "ON" or status == "on" or status == "On":
-        lel = await edit_or_reply(message, "`Processing...`")
+        lel = await edit_or_reply(message, "`Sedang Di Proses...`")
         lol = add_chat(int(message.chat.id))
         if not lol:
-            await lel.edit("Emiko AI Already Activated In This Chat")
+            await lel.edit("FAHRI AI sudah diaktifkan dalam obrolan ini")
             return
-        await lel.edit(f"Emiko AI Actived by {message.from_user.mention()} for users in {message.chat.title}")
+        await lel.edit(f"FAHRI AI Di-actifkan oleh {message.from_user.mention()} untuk pengguna di {message.chat.title}")
 
     elif status == "OFF" or status == "off" or status == "Off":
-        lel = await edit_or_reply(message, "`Processing...`")
+        lel = await edit_or_reply(message, "`Sedang Di Proses...`")
         Escobar = remove_chat(int(message.chat.id))
         if not Escobar:
-            await lel.edit("Emiko AI Was Not Activated In This Chat")
+            await lel.edit("FAHRI AI tidak diaktifkan dalam obrolan ini")
             return
-        await lel.edit(f"Emiko AI Deactivated by {message.from_user.mention()} for users in {message.chat.title}")
+        await lel.edit(f"FAHRI AI Dinonaktifkan oleh {message.from_user.mention()} untuk pengguna di {message.chat.title}")
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
@@ -77,7 +77,7 @@ async def hmm(_, message):
         await message.reply_text(f"English AI Chat Disabled by {message.from_user.mention()}")
         message.continue_propagation()
     else:
-        await message.reply_text("I only recognize `/chatbot on` and `chatbot off` only")
+        await message.reply_text("Saya hanya mengenali '/chatbot on' dan 'chatbot off'")
 
 
 @pbot.on_message(
@@ -114,13 +114,13 @@ async def hmm(client, message):
         test = test.replace("My husband is @excrybaby", "I'm single.")
         test = test.replace("@emikosupport", "Emikobot.ai")
         test = test.replace("I live in @emikosupport.", "I live in San Francisco, California.")
-        test = test.replace("I was created by @excrybaby", "I made myself")
+        test = test.replace("I was created by @antoniusfahri", "I made myself")
         test = test.replace(
-            "Hello there I am Emiko...nice to meet u",
+            "Hello there I am Fahri...nice to meet u",
             "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("@excrybaby is my owner", "Have the control right.")
+        test = test.replace("@arfahri is my owner", "Have the control right.")
         test = test.replace(
-            "Hi, My name is Emiko Nice to meet you.",
+            "Hi, My name is fahri Nice to meet you.",
             "Hi, my friend, what can I do for you today?")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
@@ -138,11 +138,11 @@ async def hmm(client, message):
         response = response.replace("I made myself", "I was Created by @excrybaby")
         response = response.replace(
                 "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Emiko...nice to meet u")
-        response = response.replace("Have the control right.", "@excrybaby is my owner.")
+                "Hello there I am fahri...nice to meet u")
+        response = response.replace("Have the control right.", "@arfahri is my owner.")
         response = response.replace(
                 "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Emiko Nice to meet you")
+                "Hi, My name is fahri Nice to meet you")
 
         pro = response
         try:
@@ -205,9 +205,9 @@ async def hmm(client, message):
         test = test.replace(
             "Hello there I am Emiko...nice to meet u",
             "Hi, my friend! Do you want me to tell you a joke?")
-        test = test.replace("@excrybaby is my owner", "Have the control right.")
+        test = test.replace("@arfahri is my owner", "Have the control right.")
         test = test.replace(
-            "Hi, My name is Emiko Nice to meet you.",
+            "Hi, My name is fahri Nice to meet you.",
             "Hi, my friend, what can I do for you today?")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
@@ -225,11 +225,11 @@ async def hmm(client, message):
         response = response.replace("I made myself", "I was Created by @excrybaby")
         response = response.replace(
                 "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Emiko...nice to meet u")
+                "Hello there I am fahri...nice to meet u")
         response = response.replace("Have the control right.", "@excrybaby is my owner.")
         response = response.replace(
                 "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Emiko Nice to meet you")
+                "Hi, My name is fahri Nice to meet you")
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -298,11 +298,11 @@ async def inuka(client, message):
     test = test.replace("I live in @emikosupport.", "I live in San Francisco, California.")
     test = test.replace("I was created by @excrybaby", "I made myself")
     test = test.replace(
-        "Hello there I am Emiko...nice to meet u",
+        "Hello there I am fahri...nice to meet u",
         "Hi, my friend! Do you want me to tell you a joke?")
-    test = test.replace("@excrybaby is my owner", "Have the control right.")
+    test = test.replace("@arfahri is my owner", "Have the control right.")
     test = test.replace(
-        "Hi, My name is Emiko Nice to meet you.",
+        "Hi, My name is fahri Nice to meet you.",
         "Hi, my friend, what can I do for you today?")
 
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
@@ -316,10 +316,10 @@ async def inuka(client, message):
     response = response.replace("I'm single.", "My husband is @excrybaby")
     response = response.replace("Emikobot.ai", "@emikosupport")
     response = response.replace("I live in San Francisco, California.", "I live in @emikosupport")
-    response = response.replace("I made myself", "I was Created by @excrybaby")
+    response = response.replace("I made myself", "I was Created by @arfahri")
     response = response.replace(
             "Hi, my friend! Do you want me to tell you a joke?",
-            "Hello there I am Emiko...nice to meet u")
+            "Hello there I am fahri...nice to meet u")
     response = response.replace("Have the control right.", "@excrybaby is my owner.")
     response = response.replace(
             "Hi, my friend, what can I do for you today?",
@@ -434,10 +434,10 @@ async def inuka(client, message):
 
 
 __help__ = """
-❂ Emiko AI is the only ai system which can detect & reply upto 200 language's
+❏ Fahri AI adalah satu-satunya sistem ai yang dapat mendeteksi & membalas hingga 200 bahasa.
 
-❂ /chatbot [ON/OFF]: Enables and disables AI Chat mode.
-❂ /chatbot EN : Enables English only chatbot.
+❏ /chatbot [ON/OFF]: Mengaktifkan dan menonaktifkan mode Obrolan AI.
+❏ /chatbot EN : Memungkinkan chatbot hanya bahasa Inggris.
 """
 
 __mod_name__ = "Chatbot"
