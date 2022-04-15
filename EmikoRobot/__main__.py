@@ -93,7 +93,9 @@ PM_START_TEXT = """
 
 buttons = [
     [
-        InlineKeyboardButton(text=f"Tentang Saya {dispatcher.bot.first_name}", callback_data="emiko_"),
+        InlineKeyboardButton(
+            text=f"Tentang Saya {dispatcher.bot.first_name}", callback_data="emiko_"
+        ),
     ],
     [
         InlineKeyboardButton(text="Dapatkan Bantuan", callback_data="help_back"),
@@ -103,7 +105,8 @@ buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="✦ Tambahkan Saya Ke grup ✦", url=f"t.me/{bu}?startgroup=new"),
+            text="✦ Tambahkan Saya Ke grup ✦", url=f"t.me/{bu}?startgroup=new"
+        ),
     ],
 ]
 
@@ -198,7 +201,13 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="Kembali", callback_data="help_back")]]
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text="Kembali", callback_data="help_back"
+                                )
+                            ]
+                        ]
                     ),
                 )
 
@@ -221,7 +230,8 @@ def start(update: Update, context: CallbackContext):
                     escape_markdown(first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
-                    sql.num_chats()),                        
+                    sql.num_chats(),
+                ),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -230,8 +240,8 @@ def start(update: Update, context: CallbackContext):
     else:
         update.effective_message.reply_text(
             f"👋 Hai, Saya {dispatcher.bot.first_name}. Terimakasih telah menambahkan saya",
-            parse_mode=ParseMode.HTML
-       )
+            parse_mode=ParseMode.HTML,
+        )
 
 
 def error_handler(update, context):
@@ -362,31 +372,40 @@ def emiko_about_callback(update, context):
         query.message.edit_text(
             text=f"๏ Saya *{dispatcher.bot.first_name}*, bot manajemen grup yang kuat yang dibuat untuk membantu Anda mengelola grup dengan mudah."
             "\n• Saya dapat membatasi pengguna."
-             "\n• Saya dapat menyapa pengguna dengan pesan selamat datang yang dapat disesuaikan dan bahkan menetapkan aturan grup."
-             "\n• Saya memiliki sistem anti-banjir yang canggih."
-             "\n• Saya dapat memperingatkan pengguna hingga mereka mencapai peringatan maksimal, dengan setiap tindakan yang telah ditentukan sebelumnya seperti larangan, bisu, tendangan, dll."
-             "\n• Saya memiliki sistem pencatatan, daftar hitam, dan bahkan balasan yang telah ditentukan sebelumnya untuk kata kunci tertentu."
-             "\n• Saya memeriksa izin admin sebelum menjalankan perintah apa pun dan hal lainnya"
+            "\n• Saya dapat menyapa pengguna dengan pesan selamat datang yang dapat disesuaikan dan bahkan menetapkan aturan grup."
+            "\n• Saya memiliki sistem anti-banjir yang canggih."
+            "\n• Saya dapat memperingatkan pengguna hingga mereka mencapai peringatan maksimal, dengan setiap tindakan yang telah ditentukan sebelumnya seperti larangan, bisu, tendangan, dll."
+            "\n• Saya memiliki sistem pencatatan, daftar hitam, dan bahkan balasan yang telah ditentukan sebelumnya untuk kata kunci tertentu."
+            "\n• Saya memeriksa izin admin sebelum menjalankan perintah apa pun dan hal lainnya"
             f"\n\n_{dispatcher.bot.first_name}'s licensed under the GNU General Public License v3.0_"
             f"\n\n Click on button bellow to get basic help for {dispatcher.bot.first_name}.",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Admin", callback_data="emiko_admin"),
-                    InlineKeyboardButton(text="Notes", callback_data="emiko_notes"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Support", callback_data="emiko_support"),
-                    InlineKeyboardButton(text="Credits", callback_data="emiko_credit"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Sumber", url="https://github.com/presetrend/presetrendgrup"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Kembali", callback_data="emiko_back"),
-                 ]
+                    [
+                        InlineKeyboardButton(text="Admin", callback_data="emiko_admin"),
+                        InlineKeyboardButton(text="Notes", callback_data="emiko_notes"),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Support", callback_data="emiko_support"
+                        ),
+                        InlineKeyboardButton(
+                            text="Credits", callback_data="emiko_credit"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Sumber",
+                            url="https://github.com/presetrend/presetrendgrup",
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Kembali", callback_data="emiko_back"
+                        ),
+                    ],
                 ]
             ),
         )
@@ -394,27 +413,28 @@ def emiko_about_callback(update, context):
         first_name = update.effective_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=False,
+            PM_START_TEXT.format(
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
         )
 
     elif query.data == "emiko_admin":
         query.message.edit_text(
             text=f"*๏ Ayo buat grup Anda sedikit efektif sekarang*"
             f"\nSelamat, {dispatcher.bot.first_name} sekarang siap untuk mengelola grup Anda."
-             "\n\n*Alat Admin*"
-             "\nAlat Admin Dasar membantu Anda melindungi dan memperkuat grup Anda."
-             "\nAnda dapat mencekal anggota, Menendang anggota, Mempromosikan seseorang sebagai admin melalui perintah bot."
-             "\n\n*Salam*"
-             "\nMari kita atur pesan selamat datang untuk menyambut pengguna baru yang datang ke grup Anda."
-             "\nsend `/setwelcome [message]` untuk menyetel pesan selamat datang!",
+            "\n\n*Alat Admin*"
+            "\nAlat Admin Dasar membantu Anda melindungi dan memperkuat grup Anda."
+            "\nAnda dapat mencekal anggota, Menendang anggota, Mempromosikan seseorang sebagai admin melalui perintah bot."
+            "\n\n*Salam*"
+            "\nMari kita atur pesan selamat datang untuk menyambut pengguna baru yang datang ke grup Anda."
+            "\nsend `/setwelcome [message]` untuk menyetel pesan selamat datang!",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -425,9 +445,9 @@ def emiko_about_callback(update, context):
     elif query.data == "emiko_notes":
         query.message.edit_text(
             text=f"<b>๏ Menyiapkan catatan</b>"
-             f"\nAnda dapat menyimpan pesan/media/audio atau apa pun sebagai catatan"
-             f"\nuntuk mendapatkan catatan cukup gunakan # di awal kata"
-             f"\n\nAnda juga dapat menyetel tombol untuk catatan dan filter (lihat menu bantuan)",
+            f"\nAnda dapat menyimpan pesan/media/audio atau apa pun sebagai catatan"
+            f"\nuntuk mendapatkan catatan cukup gunakan # di awal kata"
+            f"\n\nAnda juga dapat menyetel tombol untuk catatan dan filter (lihat menu bantuan)",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="Go Back", callback_data="emiko_")]]
@@ -440,18 +460,18 @@ def emiko_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Support", url="t.me/presetrend"),
-                    InlineKeyboardButton(text="Updates", url="https://t.me/presetrend"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Kembali", callback_data="emiko_"),
-                 
-                 ]
+                    [
+                        InlineKeyboardButton(text="Support", url="t.me/presetrend"),
+                        InlineKeyboardButton(
+                            text="Updates", url="https://t.me/presetrend"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Kembali", callback_data="emiko_"),
+                    ],
                 ]
             ),
         )
-
 
     elif query.data == "emiko_credit":
         query.message.edit_text(
@@ -460,71 +480,90 @@ def emiko_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="sena-ex", url="https://github.com/kennedy-ex"),
-                    InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Feri", url="https://github.com/FeriEXP"),
-                    InlineKeyboardButton(text="riz-ex", url="https://github.com/riz-ex"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Anime Kaizoku", url="https://github.com/animekaizoku"),
-                    InlineKeyboardButton(text="TheGhost Hunter", url="https://github.com/HuntingBots"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Inuka Asith", url="https://github.com/inukaasith"),
-                    InlineKeyboardButton(text="Noob-Kittu", url="https://github.com/noob-kittu"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Queen Arzoo", url="https://github.com/QueenArzoo"),
-                    InlineKeyboardButton(text="Paul Larsen", url="https://github.com/PaulSonOfLars"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Kembali", callback_data="emiko_"),
-                 ]
+                    [
+                        InlineKeyboardButton(
+                            text="sena-ex", url="https://github.com/kennedy-ex"
+                        ),
+                        InlineKeyboardButton(
+                            text="TheHamkerCat", url="https://github.com/TheHamkerCat"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Feri", url="https://github.com/FeriEXP"
+                        ),
+                        InlineKeyboardButton(
+                            text="riz-ex", url="https://github.com/riz-ex"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Anime Kaizoku", url="https://github.com/animekaizoku"
+                        ),
+                        InlineKeyboardButton(
+                            text="TheGhost Hunter", url="https://github.com/HuntingBots"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Inuka Asith", url="https://github.com/inukaasith"
+                        ),
+                        InlineKeyboardButton(
+                            text="Noob-Kittu", url="https://github.com/noob-kittu"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Queen Arzoo", url="https://github.com/QueenArzoo"
+                        ),
+                        InlineKeyboardButton(
+                            text="Paul Larsen", url="https://github.com/PaulSonOfLars"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Kembali", callback_data="emiko_"),
+                    ],
                 ]
             ),
         )
+
 
 def Source_about_callback(update, context):
     query = update.callback_query
     if query.data == "source_":
         query.message.edit_text(
             text="๏›› Perintah lanjutan ini untuk Musicplayer."
-             "\n\n๏ Perintah hanya untuk admin."
-             "\n • `/reload` - Untuk menyegarkan daftar admin."
-             "\n • `/pause` - Untuk menjeda pemutaran."
-             "\n • `/resume` - Untuk melanjutkan pemutaran Anda telah menjeda."
-             "\n • `/skip` - Untuk melewatkan pemutar."
-             "\n • `/end` - Untuk mengakhiri pemutaran."
-             "\n • `/musicplayer <on/off>` - Beralih untuk MENGAKTIFKAN atau MENONAKTIFKAN pemutar musik."
-             "\n\n๏ Perintah untuk semua anggota."
-             "\n • `/play` <query /reply audio> - Memutar musik melalui YouTube."
-             "\n • `/playlist` - Untuk memutar daftar putar grup atau daftar putar pribadi Anda",
+            "\n\n๏ Perintah hanya untuk admin."
+            "\n • `/reload` - Untuk menyegarkan daftar admin."
+            "\n • `/pause` - Untuk menjeda pemutaran."
+            "\n • `/resume` - Untuk melanjutkan pemutaran Anda telah menjeda."
+            "\n • `/skip` - Untuk melewatkan pemutar."
+            "\n • `/end` - Untuk mengakhiri pemutaran."
+            "\n • `/musicplayer <on/off>` - Beralih untuk MENGAKTIFKAN atau MENONAKTIFKAN pemutar musik."
+            "\n\n๏ Perintah untuk semua anggota."
+            "\n • `/play` <query /reply audio> - Memutar musik melalui YouTube."
+            "\n • `/playlist` - Untuk memutar daftar putar grup atau daftar putar pribadi Anda",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [
-                 [
-                    InlineKeyboardButton(text="Kembali", callback_data="emiko_")
-                 ]
-                ]
+                [[InlineKeyboardButton(text="Kembali", callback_data="emiko_")]]
             ),
         )
     elif query.data == "source_back":
         first_name = update.effective_user.first_name
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=False,
+            PM_START_TEXT.format(
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
         )
+
 
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -621,7 +660,7 @@ def send_settings(chat_id, user_id, user=False):
             dispatcher.bot.send_message(
                 user_id,
                 "Sepertinya tidak ada pengaturan obrolan yang tersedia :'(\nKirim ini "
-                 "dalam obrolan grup Anda menjadi admin untuk menemukan pengaturannya saat ini!",
+                "dalam obrolan grup Anda menjadi admin untuk menemukan pengaturannya saat ini!",
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -690,7 +729,7 @@ def settings_button(update: Update, context: CallbackContext):
             chat = bot.get_chat(chat_id)
             query.message.reply_text(
                 text="Hai, yang di sana! Ada beberapa setelan untuk {} - lanjutkan dan pilih yang "
-                 "kau tertarik.".format(escape_markdown(chat.title)),
+                "kau tertarik.".format(escape_markdown(chat.title)),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)
@@ -797,9 +836,7 @@ def main():
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.sendMessage(
-                f"@{SUPPORT_CHAT}", 
-                "👋 Hi, Saya Hidup.",
-                parse_mode=ParseMode.MARKDOWN
+                f"@{SUPPORT_CHAT}", "👋 Hi, Saya Hidup.", parse_mode=ParseMode.MARKDOWN
             )
         except Unauthorized:
             LOGGER.warning(
