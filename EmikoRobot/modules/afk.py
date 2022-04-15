@@ -1,4 +1,3 @@
-
 import random, html
 
 from EmikoRobot import dispatcher
@@ -66,13 +65,13 @@ def no_longer_afk(update: Update, context: CallbackContext):
         try:
             options = [
                 "{} di sini!",
-                 "{} kembali!",
-                 "{} sekarang dalam obrolan!",
-                 "{} sudah bangun!",
-                 "{} kembali online!",
-                 "{} akhirnya di sini!",
-                 "Selamat datang kembali! {}",
-                 "Di mana {}?\nDalam obrolan!",
+                "{} kembali!",
+                "{} sekarang dalam obrolan!",
+                "{} sudah bangun!",
+                "{} kembali online!",
+                "{} akhirnya di sini!",
+                "Selamat datang kembali! {}",
+                "Di mana {}?\nDalam obrolan!",
             ]
             chosen_option = random.choice(options)
             update.effective_message.reply_text(chosen_option.format(firstname))
